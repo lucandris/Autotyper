@@ -11,17 +11,17 @@ def human_typing(text, min_delay=0.05, max_delay=0.15, introduce_mistakes=False,
     global stop_typing
 
     def introduce_typing_mistakes(char):
-        if introduce_mistakes and random.random() < 0.1:  # Adjust mistake probability
+        if introduce_mistakes and random.random() < 0.1:
             mistake = random.choice("abcdefghijklmnopqrstuvwxyz")
-            pyautogui.typewrite(mistake)  # Type the incorrect character
+            pyautogui.typewrite(mistake)
             time.sleep(random.uniform(min_delay, max_delay))
-            pyautogui.press('backspace')  # Backspace the mistake
+            pyautogui.press('backspace')
         return char
 
     for char in text:
         if stop_typing:
             break
-        if slow_down_quotes and char in "\"'":  # Slow down for quotes if enabled
+        if slow_down_quotes and char in "\"'":
             time.sleep(random.uniform(min_delay * 2, max_delay * 2))
         
         char = introduce_typing_mistakes(char)
